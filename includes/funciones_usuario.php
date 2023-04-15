@@ -3,6 +3,9 @@
 // Aquí puedes incluir funciones relacionadas con los usuarios.
 // Por ejemplo:
 
+
+
+
 function loginUsuario($email, $password) {
     global $conexion;
 
@@ -44,3 +47,15 @@ function agregarUsuario($email, $password) {
 }
 
 // ... otras funciones de usuario
+function obtenerUsuarioPorId($id_usuario) {
+    global $conexion;
+
+    $query = "SELECT * FROM usuarios WHERE id = '$id_usuario'";
+    $resultado = mysqli_query($conexion, $query);
+
+    if (mysqli_num_rows($resultado) > 0) {
+        return mysqli_fetch_assoc($resultado);
+    } else {
+        return false;
+    }
+}

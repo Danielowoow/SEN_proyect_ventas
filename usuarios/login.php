@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 include "../includes/conexion.php";
 include "../includes/funciones_usuario.php";
 
