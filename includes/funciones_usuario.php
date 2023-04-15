@@ -6,18 +6,25 @@
 function loginUsuario($email, $password) {
     global $conexion;
 
-    $query = "SELECT * FROM usuarios WHERE correo = '$email' AND contraseña = '$password'";
+    $query = "SELECT * FROM usuarios WHERE correo = '$email'";
 
     $resultado = mysqli_query($conexion, $query);
 
     if (mysqli_num_rows($resultado) > 0) {
         $usuario = mysqli_fetch_assoc($resultado);
-        $_SESSION['id_usuario'] = $usuario['id'];
-        return true;
+        $hashed_password = $usuario['contraseña'];
+
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION['id_usuario'] = $usuario['id'];
+            return true;
+        } else {
+            return false;
+        }
     } else {
         return false;
     }
 }
+    
 
 function agregarUsuario($email, $password) {
     global $conexion;
@@ -35,4 +42,5 @@ function agregarUsuario($email, $password) {
         return false;
     }
 }
+
 // ... otras funciones de usuario
