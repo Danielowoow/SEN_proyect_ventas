@@ -5,6 +5,26 @@
 
 
 
+function actualizarUsuario($id_usuario, $nombre, $apellido_paterno, $apellido_materno, $email, $dni, $fecha_nacimiento, $direccion, $ciudad, $hashed_password) {
+    global $conexion;
+
+    // Si la fecha de nacimiento está vacía, establece su valor en NULL
+    if (empty($fecha_nacimiento)) {
+        $fecha_nacimiento = 'NULL';
+    } else {
+        // Asegúrate de que la fecha esté entre comillas simples para que sea tratada como una cadena en la consulta SQL
+        $fecha_nacimiento = "'$fecha_nacimiento'";
+    }
+
+    $query = "UPDATE usuarios SET nombre = '$nombre', apellido_paterno = '$apellido_paterno', apellido_materno = '$apellido_materno', correo = '$email', dni = '$dni', fecha_nacimiento = $fecha_nacimiento, direccion = '$direccion', ciudad = '$ciudad', contraseña = '$hashed_password' WHERE id = $id_usuario";
+
+    if (mysqli_query($conexion, $query)) {
+        return true;
+    } else {
+        echo "Error al actualizar el usuario: " . mysqli_error($conexion);
+        return false;
+    }
+}
 
 function loginUsuario($email, $password) {
     global $conexion;

@@ -32,8 +32,10 @@ if (!is_array($usuario)) {
         <li><strong>Fecha de nacimiento:</strong> <?php echo $usuario['fecha_nacimiento']; ?></li>
         <li><strong>Dirección:</strong> <?php echo $usuario['direccion']; ?></li>
         <li><strong>Ciudad:</strong> <?php echo $usuario['ciudad']; ?></li>
+        <li><strong>Contraseña:</strong> ********</li>
+
     </ul>
-    <a href="editar_perfil.php">Editar perfil</a>
+    <a href="http://localhost/SEN_proyect_ventas/usuarios/actualizar.php">Editar perfil</a>
     <a href="../salir.php">Cerrar sesión</a>
 </body>
 </html>
