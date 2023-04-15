@@ -7,4 +7,8 @@ function limpiar_cadena($cadena) {
     return htmlspecialchars(strip_tags(trim($cadena)));
 }
 
-// ... otras funciones generales
+function redirect($url) {
+    header("Location: " . $url);
+    exit();
+}
+

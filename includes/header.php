@@ -13,6 +13,8 @@
     <title>Tienda en línea</title>
 
     <!-- Estilos CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.js"></script>
+
 </head>
