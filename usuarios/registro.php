@@ -3,29 +3,25 @@ include "../includes/conexion.php";
 include "../includes/funciones_usuario.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nombre = $_POST['nombre'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
-    registrarUsuario($nombre, $email, $password);
-    header("Location: login.php");
+    // Validar que las contraseñas coincidan
+    if ($password != $confirm_password) {
+        echo "Las contraseñas no coinciden.";
+        exit;
+    }
+
+    // Agregar el nuevo usuario a la base de datos
+    if (agregarUsuario($email, $password)) {
+        echo "Usuario registrado exitosamente.";
+        echo "Regresar a la página anterior para iniciar sesión.";
+        echo '<li><a class="dropdown-item" href="http://localhost/SEN_proyect_ventas/login.php">Iniciar sesión</a></li>';
+    } else {
+        echo "Error al registrar el usuario.";
+    }
+    
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-</head>
-<body>
-    <form action="registro.php" method="post">
-        <input type="text" name="nombre" placeholder="Nombre">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Contraseña">
-        <button type="submit">Registrarse</button>
-    </form>
-</body>
-</html>
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,12 +7,16 @@
     <title>Registro</title>
 </head>
 <body>
-    <form action="usuarios/registro.php" method="post">
-        <input type="text" name="nombre" placeholder="Nombre">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Contraseña">
+<form action="usuarios/registro.php" method="post">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <input type="password" name="confirm_password" placeholder="Confirmar contraseña" required>
+        <div>
+            <input type="checkbox" name="terms" id="terms" required>
+            <label for="terms">Acepto los <a href="terminos_y_condiciones.php" target="_blank">términos y condiciones</a></label>
+        </div>
         <button type="submit">Registrarse</button>
     </form>
+
 </body>
 </html>
-

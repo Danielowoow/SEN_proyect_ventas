@@ -7,7 +7,7 @@
     <meta name="keywords" content="tienda en línea, comercio electrónico, productos">
     <meta name="author" content="Tu nombre o el nombre de la empresa">
 
-    <!-- Favicon -->
+    <!-- Favicon -->    
     <link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">
 
     <title>Qosqo Market</title>

@@ -31,7 +31,7 @@
             <a href="usuarios/google_login.php">Ingresa con Google</a>
         </div>
         <div>
-            <a href="usuarios/registro.php">Regístrate</a>
+            <a href="registro.php">Regístrate</a>
         </div>
     </div>
 </body>
