@@ -1,12 +1,27 @@
 <?php
+
+
+session_start();
+
 include "../includes/conexion.php";
-include "../includes/funciones_admin.php";
+include "../includes/funciones_admin.php";  
 
-$nombre = $_POST['nombre'];
-$precio = $_POST['precio'];
-$categoria = $_POST['categoria'];
+// Si se envió el formulario, agregar el producto
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $nombre = $_POST['nombre'];
+  $descripcion = $_POST['descripcion'];
+  $precio = $_POST['precio'];       
+  $categoria = $_POST['categoria'];
+  $imagen = $_FILES['imagen'];
 
-agregarProducto($nombre, $precio, $categoria);
-header("Location: ver_productos.php");
+  if (agregar_producto($nombre, $descripcion, $precio, $imagen, $categoria)) {
+    // Si se agregó el producto correctamente, redirigir a la página de productos
+    header("Location: http://localhost/SEN_proyect_ventas/admin/admin.php");
+    exit();
+  } else {
+    // Si hubo un error al agregar el producto, mostrar un mensaje de error
+    $mensaje_error = "Error al agregar el producto.";
+  }
+}
+
 ?>
-

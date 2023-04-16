@@ -15,3 +15,13 @@ CREATE TABLE usuarios (
 );
 drop table usuarios;
 select * from usuarios;
+CREATE TABLE productos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    precio DECIMAL(10, 2) NOT NULL,
+    imagen TEXT, -- Aquí almacenamos la ruta o el nombre del archivo de la imagen
+    categoria VARCHAR(255),
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+select * from productos;

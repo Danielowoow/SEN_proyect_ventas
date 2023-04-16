@@ -33,7 +33,7 @@ require_once '../includes/funciones_admin.php'; ?>
       <li><a href="#editar-producto">Editar producto</a></li>
       <li><a href="#editar-usuario">Editar usuario</a></li>
       <li><a href="#eliminar-usuario">Eliminar usuario</a></li>
-      <li><a href="#eliminar-producto">Eliminar producto</a></li>
+      <li><a href="#buscar-usuario">buscar-usuario</a></li>
       <li><a href="#ver-usuarios">Ver usuarios</a></li>
       <!-- Otras opciones -->
       <li><a href="#historial-pedidos">Historial de pedidos</a></li>
@@ -44,14 +44,106 @@ require_once '../includes/funciones_admin.php'; ?>
   <main>
     <!-- Aquí es donde agregarás los formularios y tablas para cada función -->
     <section id="agregar-producto">
-      <!-- Formulario para agregar producto -->
-    </section>
+  <h2>Agregar producto</h2>
+  <form action="agregar_producto.php" method="post" enctype="multipart/form-data">
+
+    <label for="nombre">Nombre del producto:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion"></textarea>
+
+    <label for="precio">Precio:</label>
+    <input type="number" id="precio" name="precio" step="0.01" required>
+
+    <label for="imagen">Imagen:</label>
+    <input type="file" name="imagen">
+
+    <label for="categoria">Categoría:</label>
+    <select id="categoria" name="categoria">
+  <option value="Celulares y Tablets">Celulares y Tablets</option>
+  <option value="Computadoras y Laptops">Computadoras y Laptops</option>
+  <option value="Audio y Video">Audio y Video</option>
+  <option value="Accesorios">Accesorios</option>
+  <option value="Cámaras y Fotografía">Cámaras y Fotografía</option>
+  <option value="Gaming">Gaming</option>
+  <option value="Redes y Conectividad">Redes y Conectividad</option>
+  <option value="Impresoras y Escáneres">Impresoras y Escáneres</option>
+  <option value="Almacenamiento">Almacenamiento</option>
+  <option value="Proyectores y Pantallas">Proyectores y Pantallas</option>
+</select>
+
+<button type="submit" name="agregar_producto">Agregar producto</button>
+
+  </form>
+</section>
+
     <section id="editar-producto">
       <!-- Formulario para editar producto -->
     </section>
-    <section id="eliminar-producto">
-      <!-- Formulario para eliminar producto -->
-    </section>
+    <section id="buscar-usuario">
+  <h2>Buscar usuario</h2>
+  <form action="" method="post">
+    <label for="busqueda">Ingresa el correo electrónico o el DNI del usuario:</label>
+    <input type="text" id="busqueda" name="busqueda" required>
+    <button type="submit">Buscar</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Correo</th>
+        <th>DNI</th>
+        <th>Nombre</th>
+        <th>Apellido Paterno</th>
+        <th>Apellido Materno</th>
+        <th>Fecha de nacimiento</th>
+        <th>Dirección</th>
+        <th>Ciudad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+  <?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      $busqueda = $_POST['busqueda'];
+      $usuarios = buscarUsuario($busqueda);
+
+      if ($usuarios) {
+        // Recorrer la lista de usuarios y mostrarlos en la tabla
+        foreach ($usuarios as $usuario) {
+          echo "<tr>";
+          echo "<td>{$usuario['id']}</td>";
+          echo "<td>{$usuario['correo']}</td>";
+          echo "<td>{$usuario['dni']}</td>";
+          echo "<td>{$usuario['nombre']}</td>";
+          echo "<td>{$usuario['apellido_paterno']}</td>";
+          echo "<td>{$usuario['apellido_materno']}</td>";
+          echo "<td>{$usuario['fecha_nacimiento']}</td>";
+          echo "<td>{$usuario['direccion']}</td>";
+          echo "<td>{$usuario['ciudad']}</td>";
+          echo "<td>";
+          echo "<form action='editar_usuario.php' method='post'>";
+          echo "<input type='hidden' name='id' value='{$usuario['id']}'>";
+          echo "<button type='submit' onclick='return confirm(\"¿Está seguro de eliminar este usuario?\");'><i class='bi bi-pencil'></i></button>";
+          echo "</form>";
+          echo "<form action='eliminar_usuario.php' method='post'>";
+          echo "<input type='hidden' name='id' value='{$usuario['id']}'>";
+          echo "<button type='submit' onclick='return confirm(\"¿Está seguro de eliminar este usuario?\");'><i class='bi bi-trash'></i></button>";
+          echo "</form>";
+
+          echo "</td>";
+          echo "</tr>";
+        }
+      } else {
+        // Mostrar un mensaje si no se encontraron usuarios
+        echo "<tr><td colspan='10'>No hay usuarios registrados.</td></tr>";
+      }
+    }
+  ?>
+      </tbody>
+  </table>
+</section>
 
     <section id="ver-usuarios"> 
   <h2>Usuarios</h2>
@@ -90,7 +182,10 @@ require_once '../includes/funciones_admin.php'; ?>
             echo "<td>{$usuario['direccion']}</td>";
             echo "<td>{$usuario['ciudad']}</td>";
             echo "<td>";
-            echo "<a ={$usuario['id']}'><i class='bi bi-pencil'></i></a> / ";
+            echo "<form action='editar_usuario.php' method='post'>";
+            echo "<input type='hidden' name='id' value='{$usuario['id']}'>";
+            echo "<button type='submit' onclick='return confirm(\"¿Está seguro de eliminar este usuario?\");'><i class='bi bi-pencil'></i></button>";
+            echo "</form>";
             echo "<form action='eliminar_usuario.php' method='post'>";
             echo "<input type='hidden' name='id' value='{$usuario['id']}'>";
             echo "<button type='submit' onclick='return confirm(\"¿Está seguro de eliminar este usuario?\");'><i class='bi bi-trash'></i></button>";
@@ -127,5 +222,110 @@ require_once '../includes/funciones_admin.php'; ?>
 </div>
 </div>
 </div>  </footer>
+<style>
+  /* Estilos básicos */
+body {
+  background-color: #f1f1f1;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+
+/* Ajustes de la sección */
+section {
+  border: 1px solid #ddd;
+  margin: 20px 0;
+  padding: 20px;
+}
+
+/* Estilos del formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+}
+
+label {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+select {
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #0069d9;
+}
+
+/* Estilos de la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Estilos del enlace */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+nav ul {
+  display: flex; /* establece la dirección flexible */
+  justify-content: flex-start; /* alinea los elementos en la parte izquierda */
+  list-style: none; /* elimina los estilos de la lista */
+  margin: 0; /* elimina el margen predeterminado de la lista */
+  padding: 0; /* elimina el relleno predeterminado de la lista */
+}
+
+nav li {
+  margin-right: 20px; /* agrega un espacio entre los elementos */
+}
+
+nav a {
+  text-decoration: none; /* elimina el subrayado predeterminado */
+  color: #000; /* establece el color de texto */
+  font-weight: bold; /* establece el peso de fuente en negrita */
+}
+
+</style>
 </body>
 </html>
