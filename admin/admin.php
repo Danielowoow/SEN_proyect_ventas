@@ -46,28 +46,14 @@ require_once '../includes/funciones_admin.php'; ?>
     <section id="agregar-producto">
       <!-- Formulario para agregar producto -->
     </section>
-
     <section id="editar-producto">
       <!-- Formulario para editar producto -->
     </section>
-
-    <section id="editar-usuario">
-      <!-- Formulario para editar usuario -->
-    </section>
-    <section id="eliminar-usuario">
-  <h2>Eliminar usuario</h2>
-  <form method="post" action="eliminar_usuario.php">
-    <label for="dni">DNI del usuario a eliminar:</label>
-    <input type="text" id="dni" name="dni" required>
-    <button type="submit">Eliminar usuario</button>
-  </form>
-</section>
-
     <section id="eliminar-producto">
       <!-- Formulario para eliminar producto -->
     </section>
 
-    <section id="ver-usuarios">
+    <section id="ver-usuarios"> 
   <h2>Usuarios</h2>
   <table>
     <thead>
@@ -81,15 +67,17 @@ require_once '../includes/funciones_admin.php'; ?>
         <th>Fecha de nacimiento</th>
         <th>Dirección</th>
         <th>Ciudad</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <?php
-        // Llamar a la función obtenerUsuarios()
+        // Obtener la lista de usuarios
         $usuarios = obtenerUsuarios();
-
+        
+        // Verificar si se encontraron usuarios
         if ($usuarios) {
-          // Si hay usuarios, recorrer el array y mostrarlos en la tabla
+          // Recorrer la lista de usuarios y mostrarlos en la tabla
           foreach ($usuarios as $usuario) {
             echo "<tr>";
             echo "<td>{$usuario['id']}</td>";
@@ -101,16 +89,25 @@ require_once '../includes/funciones_admin.php'; ?>
             echo "<td>{$usuario['fecha_nacimiento']}</td>";
             echo "<td>{$usuario['direccion']}</td>";
             echo "<td>{$usuario['ciudad']}</td>";
+            echo "<td>";
+            echo "<a ={$usuario['id']}'><i class='bi bi-pencil'></i></a> / ";
+            echo "<form action='eliminar_usuario.php' method='post'>";
+            echo "<input type='hidden' name='id' value='{$usuario['id']}'>";
+            echo "<button type='submit' onclick='return confirm(\"¿Está seguro de eliminar este usuario?\");'><i class='bi bi-trash'></i></button>";
+            echo "</form>";
+
+            echo "</td>";
             echo "</tr>";
           }
         } else {
-          // Si no hay usuarios, mostrar un mensaje
-          echo "<tr><td colspan='9'>No hay usuarios registrados.</td></tr>";
+          // Mostrar un mensaje si no se encontraron usuarios
+          echo "<tr><td colspan='10'>No hay usuarios registrados.</td></tr>";
         }
       ?>
     </tbody>
   </table>
 </section>
+</section>         
 
     <!-- Otras secciones adicionales -->
     <section id="historial-pedidos">

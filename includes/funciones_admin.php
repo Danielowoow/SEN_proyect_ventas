@@ -1,28 +1,26 @@
 
 <?php
-function eliminarUsuarioPorDNI($dni) {
-    // Incluir el archivo de conexión a la base de datos
+
+function eliminarUsuario($id) {
+    // Conectar a la base de datos
     include 'conexion.php';
+
+    // Ejecutar la consulta SQL para eliminar el usuario
+    $sql = "DELETE FROM usuarios WHERE id = $id";
+    $resultado = $conexion->query($sql);
   
-    // Crear la consulta SQL para eliminar un usuario por DNI
-    $sql = "DELETE FROM usuarios WHERE dni = ?";
+    // Verificar si la consulta se ejecutó correctamente
+    if ($resultado) {
+      // Mostrar un mensaje de éxito
+      echo "El usuario ha sido eliminado correctamente.";
+    } else {
+      // Mostrar un mensaje de error
+      echo "Error al eliminar el usuario: " ;
+    }
   
-    // Preparar la consulta
-    $stmt = mysqli_prepare($conexion, $sql);
-  
-    // Enlazar el parámetro DNI
-    mysqli_stmt_bind_param($stmt, 's', $dni);
-  
-    // Ejecutar la consulta
-    $resultado = mysqli_stmt_execute($stmt);
-  
-    // Cerrar la declaración y la conexión
-    mysqli_stmt_close($stmt);
-    mysqli_close($conexion);
-  
-    // Devolver el resultado (true si se eliminó correctamente, false en caso contrario)
-    return $resultado;
+    
   }
+
 function obtenerUsuarios() {
     // Incluir el archivo de conexión a la base de datos
     include 'conexion.php';
@@ -50,3 +48,32 @@ function obtenerUsuarios() {
       return false;
     }
   }
+
+  function buscarUsuario($termino) {
+  // Conectar a la base de datos
+  require_once 'conexion.php';
+
+  // Escapar el término de búsqueda para evitar inyecciones SQL
+  $termino = mysqli_real_escape_string($conexion, $termino);
+
+  // Consulta para buscar usuarios que coincidan con el término de búsqueda
+  $consulta = "SELECT * FROM usuarios WHERE correo LIKE '%$termino%' OR dni LIKE '%$termino%'";
+
+  // Ejecutar la consulta
+  $resultado = mysqli_query($conexion, $consulta);
+
+  // Verificar si la consulta fue exitosa
+  if ($resultado) {
+    // Convertir el resultado en un array asociativo
+    $usuarios = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+
+    // Devolver el array de usuarios
+    return $usuarios;
+  } else {
+    // Si hubo un error en la consulta, mostrar el mensaje de error
+    echo "Error al buscar usuarios: " . mysqli_error($conexion);
+  }
+
+  // Cerrar la conexión a la base de datos
+  mysqli_close($conexion);
+}

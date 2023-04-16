@@ -1,25 +1,15 @@
 <?php
-  // Incluir funcionesadmin.php
-  require_once '../includes/funciones_admin.php';
 
-  // Verificar si se ha enviado el formulario
-  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['dni'])) {
-    // Obtener el DNI del formulario
-    $dni = $_POST['dni'];
+session_start();
+include "../includes/conexion.php";
+include "../includes/funciones_admin.php";
+// Obtener el ID del usuario enviado por el formulario
+$id = $_POST['id'];
 
-    // Llamar a la función eliminarUsuarioPorDNI
-    $resultado = eliminarUsuarioPorDNI($dni);
+// Eliminar el usuario de la base de datos
+eliminarUsuario($id);
 
-    // Redirigir a la página de administrador con un mensaje de éxito o error
-    if ($resultado) {
-      header('Location: admin.php?mensaje=Usuario eliminado correctamente');
-    } else {
-      header('Location: admin.php?e rror=No se pudo eliminar el usuario');
-    }
-  } else {
-    // Si no se envió el formulario, redirigir a la página de administrador
-    header('Location: admin.php');
-  }
+// Redirigir al usuario de vuelta a la página de usuarios
+header("Location: http://localhost/SEN_proyect_ventas/admin/admin.php");
+exit();
 ?>
-
-
