@@ -13,12 +13,12 @@
     <title>Qosqo Market</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
-    <!-- Estilos CSS -->
+    <!--Estilos CSS  -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="css/bootstrap.css">
     <script src="js/bootstrap.js"></script>
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">  
     
 </head>

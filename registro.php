@@ -7,6 +7,8 @@
     <title>Registro</title>
 </head>
 <body>
+    <?php include 'includes/header.php'; ?>
+    <?php include 'includes/navbar.php'; ?>  
 <form action="usuarios/registro.php" method="post">
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Contraseña" pattern=".{8,}" title="pendejo, minimo 8 caracteres y no ponghas 1-8" required>
@@ -18,6 +20,6 @@
         </div>
         <button type="submit">Registrarse</button>
     </form>
-
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>

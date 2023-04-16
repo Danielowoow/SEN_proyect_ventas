@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/styles.css">
 <footer class="bg-light mt-auto py-3">
     <div class="container">
         <div class="row">
