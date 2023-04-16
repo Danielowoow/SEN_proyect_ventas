@@ -5,7 +5,7 @@
             <div class="col-md-4">
                 <h5>Suscríbete a nuestras promociones</h5>
                 <p>Ingresa tu correo electrónico para recibir las mejores ofertas</p>
-                <form>
+                <form action="subscribe.php" method="post">
                     <div class="input-group">
                         <input type="email" class="form-control" placeholder="Correo electrónico" required>
                         <div class="input-group-append">
