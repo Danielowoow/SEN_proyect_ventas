@@ -24,8 +24,8 @@
                         <i class="bi bi-person"></i>
                     </label>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="usuarios/login.php">Iniciar sesión</a></li>
-                        <li><a class="dropdown-item" href="usuarios/mi_perfil.php">Mi perfil</a></li>
+                        <li><a class="dropdown-item" href="http://localhost/SEN_proyect_ventas/login.php">Iniciar sesión</a></li>
+                        <li><a class="dropdown-item" href="http://localhost/SEN_proyect_ventas/usuarios/perfil.php">Mi perfil</a></li>
                         <li><a class="dropdown-item" href="usuarios/mis_pedidos.php">Mis pedidos</a></li>
                     </ul>
                 </li>

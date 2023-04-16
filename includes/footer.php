@@ -22,7 +22,7 @@
                 Te atendemos las 24hrs</p>
                 <p>Escríbenos:<br>
                 Estamos para ayudarte<br>
-                QosqoMarket9989@promart.pe</p>
+                QosqoMarket9989@jijija.pe</p>
                 <p>Llámanos<br>
                 Venta Telefónica 931998025<br>
                 De lunes a domingo de 8:00am a 8:00pm</p>
