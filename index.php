@@ -6,10 +6,13 @@
     <title>Qosqo market</title>
     <!-- <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css"> -->
+    <script src="js/bootstrap.js"></script>
+
 </head>
 <body>
     <?php include 'includes/header.php'; ?>
     <?php include 'includes/navbar.php'; ?>
+
 
     <main>
         <!-- Aquí va el contenido principal de la página -->
