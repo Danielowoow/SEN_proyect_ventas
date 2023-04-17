@@ -1,5 +1,14 @@
-<?php 
+<?php
 session_start();
+
+// Comprueba si un administrador ha iniciado sesión
+if (!isset($_SESSION['admin_logged_in']) || !$_SESSION['admin_logged_in']) {
+    header("Location: login_admin.php");
+    exit;
+}
+
+// El resto de tu código para admin.php
+
 require_once '../includes/funciones_admin.php'; ?>
 
 
@@ -60,7 +69,8 @@ require_once '../includes/funciones_admin.php'; ?>
     <input type="file" name="imagen">
 
     <label for="categoria">Categoría:</label>
-    <select id="categoria" name="categoria">
+    <select id="categoria" name="categoria_id">
+
   <option value="Celulares y Tablets">Celulares y Tablets</option>
   <option value="Computadoras y Laptops">Computadoras y Laptops</option>
   <option value="Audio y Video">Audio y Video</option>

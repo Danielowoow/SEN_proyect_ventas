@@ -11,7 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $nombre = $_POST['nombre'];
   $descripcion = $_POST['descripcion'];
   $precio = $_POST['precio'];       
-  $categoria = $_POST['categoria'];
+  $categoria = $_POST['categoria_id'];
+
   $imagen = $_FILES['imagen'];
 
   if (agregar_producto($nombre, $descripcion, $precio, $imagen, $categoria)) {

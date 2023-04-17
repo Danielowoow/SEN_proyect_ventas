@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #008CBA;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>¿Me invitas tu comida?</h2>
+    <div class="container">
+        <button id="btnSi">Sí</button>
+        <button id="btnMover">No</button>
+    </div>
+
+    <script>
+        const btnSi = document.getElementById('btnSi');
+        const btnMover = document.getElementById('btnMover');
+
+        btnSi.addEventListener('click', () => {
+            alert("Ya sabía, gracias.");
+        });
+
+        btnMover.addEventListener('mouseover', () => {
+            const maxX = window.innerWidth - btnMover.clientWidth;
+            const maxY = window.innerHeight - btnMover.clientHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            btnMover.style.position = 'fixed';
+            btnMover.style.left = randomX + 'px';
+            btnMover.style.top = randomY + 'px';
+        });
+    </script>
+</body>
+</html>

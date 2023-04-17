@@ -92,8 +92,9 @@ function agregar_producto($nombre, $descripcion, $precio, $imagen, $categoria) {
     }
   
     // Insertar el producto en la base de datos
-    $consulta = "INSERT INTO productos (nombre, descripcion, precio, imagen, categoria) VALUES ('$nombre', '$descripcion', '$precio', '$ruta_imagen', '$categoria')";
-  
+    $consulta = "INSERT INTO productos (nombre, descripcion, precio, imagen, categoria_id) VALUES ('$nombre', '$descripcion', '$precio', '$ruta_imagen', '$categoria')";
+
+    
     if (mysqli_query($conexion, $consulta)) {
       // Si la consulta fue exitosa, devolver true
       return true;
@@ -118,4 +119,27 @@ function agregar_producto($nombre, $descripcion, $precio, $imagen, $categoria) {
     }
 
     return $productos;
+}
+function loginadmin($email, $password) {
+  global $conexion;
+
+  $query = "SELECT * FROM administradores WHERE correo = '$email'";
+
+  $resultado = mysqli_query($conexion, $query);
+
+  if (mysqli_num_rows($resultado) > 0) {
+      $usuario = mysqli_fetch_assoc($resultado);
+      $stored_password = $usuario['contraseña'];
+
+      if ($password == $stored_password) {
+          $_SESSION['id_usuario'] = $usuario['id'];
+          $_SESSION['admin_logged_in'] = true; // Agrega esta línea
+ 
+          return true;
+      } else {
+          return false;
+      }
+  } else {
+      return false;
+  }
 }
