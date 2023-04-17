@@ -40,9 +40,8 @@ require_once '../includes/funciones_admin.php'; ?>
     <ul>
       <li><a href="#agregar-producto">Agregar producto</a></li>
       <li><a href="#editar-producto">Editar producto</a></li>
-      <li><a href="#editar-usuario">Editar usuario</a></li>
-      <li><a href="#eliminar-usuario">Eliminar usuario</a></li>
-      <li><a href="#buscar-usuario">buscar-usuario</a></li>
+      <li><a href="#buscar-usuario">Buscar usuarios</a></li>
+      <li><a href="#ver-usuarios">Editar/ver/eliminar usuario</a></li>
       <li><a href="#ver-usuarios">Ver usuarios</a></li>
       <!-- Otras opciones -->
       <li><a href="#historial-pedidos">Historial de pedidos</a></li>

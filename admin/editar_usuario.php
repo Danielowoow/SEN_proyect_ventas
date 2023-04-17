@@ -2,7 +2,10 @@
 session_start();
 include "../includes/conexion.php";
 include "../includes/funciones_admin.php";
-
+if (!isset($_SESSION['admin_logged_in']) || !$_SESSION['admin_logged_in']) {
+    header("Location: login_admin.php");
+    exit;
+}
 
 $id_usuario = $_POST['id'];
 
@@ -80,8 +83,8 @@ if (!$usuario) {
             <input type="password" name="confirmar_password" id="confirmar_password" class="form-control">
         </div>
         
-        <button type="submit" class="btn btn-primary">Actualizar perfil</button>
-    </form>
+        <button type="submit" class="btn btn-primary" onclick='return confirm("¿Está seguro de editar a este usuario?");'>Actualizar perfil</button>
+ </form>
     
 </div>
 

@@ -43,10 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Actualizar la información del usuario en la base de datos
     adminActualizarUsuario($id_usuario, $nombre, $apellido_paterno, $apellido_materno, $email, $dni, $fecha_nacimiento, $direccion, $ciudad, $hashed_password);
-
-    echo "Perfil actualizado correctamente";
+    header("Location: http://localhost/SEN_proyect_ventas/admin/admin.php");
+    exit();
+    //echo "Perfil actualizado correctamente";
     // Redirigir al perfil o a otra página si lo deseas
-    echo '<li><a class="button" href="http://localhost/SEN_proyect_ventas/admin/admin.php">perfil actualizado</a></li>';
+    //echo '<li><a class="button" href="http://localhost/SEN_proyect_ventas/admin/admin.php">perfil actualizado</a></li>';
 
 
 }
