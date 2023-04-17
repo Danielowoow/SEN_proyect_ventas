@@ -71,16 +71,16 @@ require_once '../includes/funciones_admin.php'; ?>
     <label for="categoria">Categoría:</label>
     <select id="categoria" name="categoria_id">
 
-  <option value="Celulares y Tablets">Celulares y Tablets</option>
-  <option value="Computadoras y Laptops">Computadoras y Laptops</option>
-  <option value="Audio y Video">Audio y Video</option>
-  <option value="Accesorios">Accesorios</option>
-  <option value="Cámaras y Fotografía">Cámaras y Fotografía</option>
-  <option value="Gaming">Gaming</option>
-  <option value="Redes y Conectividad">Redes y Conectividad</option>
-  <option value="Impresoras y Escáneres">Impresoras y Escáneres</option>
-  <option value="Almacenamiento">Almacenamiento</option>
-  <option value="Proyectores y Pantallas">Proyectores y Pantallas</option>
+  <option value="1">Celulares y Tablets</option>
+  <option value="2">Computadoras y Laptops</option>
+  <option value="3">Audio y Video</option>
+  <option value="4">Accesorios</option>
+  <option value="5">Cámaras y Fotografía</option>
+  <option value="6">Gaming</option>
+  <option value="7">Redes y Conectividad</option>
+  <option value="8">Impresoras y Escáneres</option>
+  <option value="9">Almacenamiento</option>
+  <option value="10">Proyectores y Pantallas</option>
 </select>
 
 <button type="submit" name="agregar_producto">Agregar producto</button>
