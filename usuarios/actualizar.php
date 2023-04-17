@@ -6,7 +6,7 @@ include "../includes/funciones_usuario.php";
 // Comprueba si el usuario ha iniciado sesión
 if (!isset($_SESSION['id_usuario'])) {
     // Redirecciona al usuario a la página de inicio de sesión si no ha iniciado sesión
-    header("Location: login.php");
+    header("Location: http://localhost/SEN_proyect_ventas/login.php");
     exit;
 }
 
@@ -77,7 +77,7 @@ $usuario = obtenerUsuarioPorId($id_usuario);
             </div>
 
             <div class="form-group">
-                <<label for="nueva_password">Nueva contraseña:</label>
+                <label for="nueva_password">Nueva contraseña:</label>
 <input type="password" name="nueva_password" id="nueva_password" class="form-control">
 </div>
 <div class="form-group">

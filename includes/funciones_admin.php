@@ -76,6 +76,35 @@ function obtenerUsuarios() {
   }
 
 }
+function obtenerUsuarioPorId($id_usuario) {
+  global $conexion;
+
+  $query = "SELECT * FROM usuarios WHERE id = '$id_usuario'";
+  $resultado = mysqli_query($conexion, $query);
+
+  if (mysqli_num_rows($resultado) > 0) {
+      return mysqli_fetch_assoc($resultado);
+  } else {
+      return false;
+  }
+}
+function obtenerUsuarioPorIda($id_usuario) {
+  global $conexion;
+  // Mensaje de depuración
+  echo "ID del usuario en obtenerUsuarioPorId: {$id_usuario}<br>";
+
+     
+
+  $query = "SELECT * FROM usuarios WHERE id = '$id_usuario'";
+  $resultado = mysqli_query($conexion, $query);
+
+  if (mysqli_num_rows($resultado) > 0) {
+      return mysqli_fetch_assoc($resultado);
+  } else {
+      return false;
+  }
+}
+
 function agregar_producto($nombre, $descripcion, $precio, $imagen, $categoria) {
     // Conectar a la base de datos
     include 'conexion.php';
@@ -140,6 +169,26 @@ function loginadmin($email, $password) {
           return false;
       }
   } else {
+      return false;
+  }
+}
+function adminActualizarUsuario($id_usuario, $nombre, $apellido_paterno, $apellido_materno, $email, $dni, $fecha_nacimiento, $direccion, $ciudad, $hashed_password) {
+  global $conexion;
+
+  // Si la fecha de nacimiento está vacía, establece su valor en NULL
+  if (empty($fecha_nacimiento)) {
+      $fecha_nacimiento = 'NULL';
+  } else {
+      // Asegúrate de que la fecha esté entre comillas simples para que sea tratada como una cadena en la consulta SQL
+      $fecha_nacimiento = "'$fecha_nacimiento'";
+  }
+
+  $query = "UPDATE usuarios SET nombre = '$nombre', apellido_paterno = '$apellido_paterno', apellido_materno = '$apellido_materno', correo = '$email', dni = '$dni', fecha_nacimiento = $fecha_nacimiento, direccion = '$direccion', ciudad = '$ciudad', contraseña = '$hashed_password' WHERE id = $id_usuario";
+
+  if (mysqli_query($conexion, $query)) {
+      return true;
+  } else {
+      echo "Error al actualizar el usuario: " . mysqli_error($conexion);
       return false;
   }
 }

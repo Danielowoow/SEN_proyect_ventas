@@ -194,7 +194,7 @@ require_once '../includes/funciones_admin.php'; ?>
             echo "<td>";
             echo "<form action='editar_usuario.php' method='post'>";
             echo "<input type='hidden' name='id' value='{$usuario['id']}'>";
-            echo "<button type='submit' onclick='return confirm(\"¿Está seguro de eliminar este usuario?\");'><i class='bi bi-pencil'></i></button>";
+            echo "<button type='submit' onclick='return confirm(\"¿Está seguro editar este usuario?\");'><i class='bi bi-pencil'></i></button>";
             echo "</form>";
             echo "<form action='eliminar_usuario.php' method='post'>";
             echo "<input type='hidden' name='id' value='{$usuario['id']}'>";
@@ -214,7 +214,8 @@ require_once '../includes/funciones_admin.php'; ?>
 </section>
 </section>         
 
-    <!-- Otras secciones adicionales -->
+    <!-- editar usuario-->
+    
     <section id="historial-pedidos">
       <!-- Tabla para mostrar historial de pedidos -->
     </section>
