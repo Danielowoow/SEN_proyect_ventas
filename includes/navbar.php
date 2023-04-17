@@ -1,6 +1,6 @@
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-navbar">
     <div class="container">
         <a class="navbar-brand" href="http://localhost/SEN_proyect_ventas">Tienda en línea</a>
         <label for="navbar-toggle" class="navbar-toggler-icon" id="navbar-toggle-label"></label>
@@ -41,6 +41,12 @@
     </div>
 </nav>
 <style>
+.sticky-navbar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}    
     .nav-item.dropdown:hover .dropdown-menu {
     display: block;
 }

@@ -17,6 +17,11 @@
 
     <main>
         <!-- Aquí va el contenido principal de la página -->
+        <section class="content-cintillo content-placeholder-cintillo-cat-1 gh-gtm " data-position="">
+            <div class="cintillo-normal"><a href="https://youtu.be/dQw4w9WgXcQ" class="link-cintillo gh-gtm-img" data-name="CyberWow_agora" data-position="Home_H-Cintillo-01" data-index="" data-creative="https://promart.vteximg.com.br/arquivos/Cintillo-desktop-1366x46.png" target="_blank"></a>
+                <img class="" src="https://promart.vteximg.com.br/arquivos/Cintillo-desktop-1366x46.png">
+            </div>
+        </section>
 
 <!-- Banner principal -->
 <!--
@@ -43,6 +48,11 @@
         </button>
     </div>
 </section> -->
+<section class="section-container" id="section-to-close">
+        <h2>Contenido de la sección</h2>
+        <p>Esta sección se cerrará al hacer clic en el botón X en la parte superior derecha.</p>
+        <button class="close-btn" onclick="closeSection()">x</button>
+    </section>
 
         <!-- Categorías de productos -->
         <section class="categorias my-5">
@@ -116,5 +126,52 @@
 jijija
 
     <?php include 'includes/footer.php'; ?>
+    <a href="https://wa.me/51931998025  " target="_blank" class="whatsapp-link">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Ícono de WhatsApp" class="whatsapp-icon">
+</a>
+<style>
+    .whatsapp-link {
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.whatsapp-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+.section-container {
+            position: relative;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 12px;
+            background-color: #f1f1f1;
+            color: #333;
+            border: none;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 4px;
+        }
+
+        .close-btn:hover {
+            background-color: #ddd;
+        }
+</style>
+<script>
+        function closeSection() {
+            document.getElementById("section-to-close").style.display = "none";
+        }
+    </script>
 </body>
 </html>

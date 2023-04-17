@@ -35,32 +35,32 @@
                 <div class="row">
                     <div class="col-md-4">
                         <h5>Secciones</h5>
-                        <ul>
-                            <li><a href="#">Nosotros</a></li>
-                            <li><a href='#'>Extra Garantía</a></li>
-                            <li><a href='#'>Nuestros servicios</a></li>
-                            <li><a href='#'>Venta empresa</a></li>
-                            <li><a href='#'>Trabaja con nosotros</a></li>
-                        </ul>
+                        <div class="btn-group-vertical">
+                          <button type="button" class="btn btn-link">Nosotros</button>
+                          <button type="button" class="btn btn-link">Extra Garantía</button>
+                          <button type="button" class="btn btn-link">Nuestros servicios</button>
+                          <button type="button" class="btn btn-link">Venta empresa</button>
+                          <button type="button" class="btn btn-link">Trabaja con nosotros</button>
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <h5>Atención al cliente</h5>
+                      <h5>Atención al cliente</h5>
+                      <div class="dropdown">
+                        <p>Atención al cliente</p>
                         <ul>
-                            <li><a href='#'>Preguntas frecuentes</a></li>
-                            <li><a href='#'>Cambios y devoluciones</a></li>
-                            <li><a href='#'>Comprobantes electrónicos</a></li>
-                            <li><a href='#'>Comprobante electrónico oriente</a></li>
-                            <li><a href='#'>Términos y condiciones de compra</a></li>
-                            <li><a href='#'>Politica de privacidad</a></li>
-<li><a href='#'>Mis pedidos</a></li>
-<li><a href='#'>Seguimiento de despacho</a></li>
-<li><a href='#'>Contáctanos</a></li>
-</ul>
-</div>
-<div class="col-md-4">
-<h5>Otros</h5>
-<li>Síguenos en
-  <ul class="redes-sociales vdk">
+                          <li><a href='#'>Preguntas frecuentes</a></li>
+                          <li><a href='#'>Cambios y devoluciones</a></li>
+                          <li><a href='#'>Términos y condiciones de compra</a></li>
+                          <li><a href='#'>Politica de privacidad</a></li>
+                          <li><a href='#'>Contáctanos</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <h5>Otros</h5>
+                      <ul>
+                        <li>Síguenos en
+                        <ul class="redes-sociales vdk">
     <li>
       <a class="mdi mdi-facebook" href="https://www.senati.edu.pe"></a>
     </li>
@@ -75,17 +75,14 @@
     </li>
   </ul>
 </li>
-
-</li>
-<li>Métodos de pago
-<ul class="items-lk metodos">
-  <li class="mdi mdi-mastercard"><i class="fab fa-cc-mastercard"></i></li>
-  <li class="mdi mdi-visa"><i class="fab fa-cc-visa"></i></li>
-  <li class="mdi mdi-diners"><i class="fab fa-cc-diners-club"></i></li>
-  <li class="mdi mdi-amex"><i class="fab fa-cc-amex"></i></li>
-</ul>
-</li>
 <li><a href='#'>Libro de reclamaciones</a></li>
+</ul>
+<h5>Métodos de pago</h5>
+<ul class="items-lk metodos">
+  <li class="mdi mdi-mastercard">MASTERCARD<i class="fab fa-cc-mastercard"></i></li>
+  <li class="mdi mdi-visa">VISA<i class="fab fa-cc-visa"></i></li>
+  <li class="mdi mdi-diners">DINERS<i class="fab fa-cc-diners-club"></i></li>
+  <li class="mdi mdi-amex">AMEX<i class="fab fa-cc-amex"></i></li>
 </ul>
 </div>
 </div>
@@ -98,5 +95,74 @@
 </div>
 </div>
 </div>
+<style>
+  .dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.dropdown ul {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+padding: 12px 16px;
+z-index: 1;
+}
 
+.dropdown:hover ul {
+display: block;
+}
+.dropdown p {
+margin: 0;
+padding: 0;
+}
+
+.dropdown ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+border-radius: 4px;
+}
+
+.dropdown ul li {
+padding: 8px 16px;
+transition: background-color 0.2s;
+}
+
+.dropdown ul li:hover {
+background-color: #f1f1f1;
+}
+
+.dropdown ul li a {
+text-decoration: none;
+color: #333;
+display: block;
+}
+
+.dropdown ul li a:hover {
+color: #007bff;
+}
+
+.dropdown ul li.active {
+background-color: #007bff;
+}
+
+.dropdown ul li.active a {
+color: #fff;
+}
+
+.btn-link {
+text-decoration: none;
+color: #007bff;
+padding: 0;
+}
+
+.btn-link:hover {
+color: #0056b3;
+text-decoration: underline;
+}
+
+</style>
 </footer>
