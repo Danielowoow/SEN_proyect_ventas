@@ -175,21 +175,25 @@ if ($imagen['error'] === UPLOAD_ERR_OK) {
 
     return $productos;
 }
-  function obtener_productos() {
-    include 'conexion.php';
+function obtenerTodosProductos() {
+  include 'conexion.php';
+  global $conexion;
 
-    $sql = "SELECT * FROM productos";
-    $result = mysqli_query($conexion, $sql);
+  $consulta = "SELECT productos.id, productos.nombre, productos.descripcion, productos.precio, productos.imagen, categorias.nombre AS categoria_nombre FROM productos JOIN categorias ON productos.categoria_id = categorias.id ORDER BY productos.nombre ASC";
 
-    $productos = array();
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $productos[] = $row;
-        }
-    }
+  $resultado = mysqli_query($conexion, $consulta);
 
-    return $productos;
-}
+  if (!$resultado) {
+      die('Error en la consulta: ' . mysqli_error($conexion));
+  }
+
+  $productos = array();
+  while ($producto = mysqli_fetch_assoc($resultado)) {
+      $productos[] = $producto;
+  }
+
+  return $productos;
+}   
 
 function loginadmin($email, $password) {
   global $conexion;

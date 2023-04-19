@@ -28,6 +28,8 @@ require_once '../includes/funciones_admin.php'; ?>
 
   <link rel="stylesheet" href="estilos.css">
   <script src="funciones.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
     <?php include '../includes/header.php'; ?>
@@ -39,7 +41,8 @@ require_once '../includes/funciones_admin.php'; ?>
   <nav>
     <ul>
       <li><a href="#agregar-producto">Agregar producto</a></li>
-      <li><a href="#editar-producto">ver/borrar/Editar producto</a></li>
+      <li><a href="#buscar-producto">buscar producto</a></li>
+      <li><a href="#iver-productos">ver/borrar/Editar producto</a></li>
       <li><a href="#buscar-usuario">Buscar usuarios</a></li>
       <li><a href="#ver-usuarios">Editar/ver/eliminar usuario</a></li>
       <li><a href="#ver-usuarios">Ver usuarios</a></li>
@@ -51,7 +54,7 @@ require_once '../includes/funciones_admin.php'; ?>
 
   <main>
     <!-- Aquí es donde agregarás los formularios y tablas para cada función -->
-    <section id="agregar-producto">
+<section id="agregar-producto">
   <h2>Agregar producto</h2>
   <form action="agregar_producto.php" method="post" enctype="multipart/form-data">
 
@@ -87,9 +90,9 @@ require_once '../includes/funciones_admin.php'; ?>
   </form>
   
 </section>
-<section>
+<section id="buscar-producto">
     <h2>Buscar producto</h2>
-    <form action="buscar_producto.php" method="post">
+    <form action="buscar_producto.php" method="post" id="buscarProductoForm">
         <label for="nombre">Nombre del producto:</label>
         <input type="text" id="nombre" name="nombre">
 
@@ -109,16 +112,75 @@ require_once '../includes/funciones_admin.php'; ?>
             <!-- ... -->
         </select>
 
-        <button type="submit">Buscar</button>
+        <button type="submit" id="buscarBtn">Buscar</button>
     </form>
+    <div id="resultados">
+        <!-- Aquí se mostrarán los resultados -->
+    </div>
+    <script>
+        // Función para manejar la búsqueda y mostrar los resultados
+        function buscarProductos() {
+            // Recopila los datos del formulario
+            var formData = {
+                'nombre': $('#nombre').val(),
+                'precioMin': $('#precioMin').val(),
+                'precioMax': $('#precioMax').val(),
+                'categoria': $('#categoria').val()
+            };
+
+            // Realiza una solicitud AJAX a buscar_producto.php
+            $.ajax({
+                type: 'POST',
+                url: 'buscar_producto.php',
+                data: formData,
+                dataType: 'html',
+                encode: true
+            })
+            .done(function(data) {
+                // Muestra los resultados en el div con id "resultados"
+                $('#resultados').html(data);
+            });
+        }
+
+        // Escucha el evento "submit" del formulario
+        $('#buscarProductoForm').submit(function(event) {
+            // Evita que se recargue la página
+            event.preventDefault();
+            // Llama a la función buscarProductos()
+            buscarProductos();
+        });
+    </script>
+
 </section>
-<section>
-    <h2>Resultados de búsqueda</h2>
+<section id="ver-productos">
+    <h2>Todos los productos</h2>
+    <button id="cargarProductosBtn">Cargar productos</button>
+    <div id="productT">
+        <!-- Aquí se mostrarán los productos -->
+    </div>
+    <script>
+        function cargarProductos() {
+            $.ajax({
+                type: 'GET',
+                url: 'productosT.php',
+                dataType: 'html',
+                encode: true
+            })
+            .done(function(data) {
+                $('#productT').html(data);
+            });
+        }
+
+        $('#cargarProductosBtn').click(function(event) {
+            event.preventDefault();
+            cargarProductos();
+        });
+    </script>
 </section>
 
-    <section id="editar-producto">
+<section id="editar-producto">
       <!-- Formulario para editar producto -->
-    </section>
+</section>
     <section id="buscar-usuario">
   <h2>Buscar usuario</h2>
   <form action="" method="post">

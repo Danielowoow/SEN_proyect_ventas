@@ -2,8 +2,8 @@
 include "../includes/conexion.php";
 include "../includes/funciones_admin.php";  
 
-if (isset($_POST['nombre'])): ?>
-    <?php $productos = buscarProducto($_POST['nombre'], $_POST['precioMin'], $_POST['precioMax'], $_POST['categoria']); ?>
+    $productos = obtenerTodosProductos(); 
+    ?>
     <?php if (count($productos) > 0): ?>
         <table>
             <thead>
@@ -11,6 +11,7 @@ if (isset($_POST['nombre'])): ?>
                     <th>Nombre</th>
                     <th>Precio</th>
                     <th>Categoría</th>
+                    <th>Imagen</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,19 +21,16 @@ if (isset($_POST['nombre'])): ?>
                         <td><?= htmlspecialchars($producto['precio']) ?></td>
                         <td><?= htmlspecialchars($producto['categoria_nombre']) ?></td>
                         <td>
-    <?php if (!empty($producto['imagen'])): ?>
-        <img src="../<?= htmlspecialchars($producto['imagen']) ?>" alt="<?= htmlspecialchars($producto['nombre']) ?>" style="max-width: 100px; max-height: 100px;">
-
-    <?php else: ?>
-        <p>No hay imagen disponible</p>
-    <?php endif; ?>
-</td>
-
+                            <?php if (!empty($producto['imagen'])): ?>
+                                <img src="../<?= htmlspecialchars($producto['imagen']) ?>" alt="<?= htmlspecialchars($producto['nombre']) ?>" style="max-width: 100px; max-height: 100px;">
+                            <?php else: ?>
+                                <p>No hay imagen disponible</p>
+                            <?php endif; ?>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     <?php else: ?>
-        <p>No se encontraron productos con los criterios de búsqueda.</p>
+        <p>No se encontraron productos.</p>
     <?php endif; ?>
-<?php endif; ?>
