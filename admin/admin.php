@@ -39,7 +39,7 @@ require_once '../includes/funciones_admin.php'; ?>
   <nav>
     <ul>
       <li><a href="#agregar-producto">Agregar producto</a></li>
-      <li><a href="#editar-producto">Editar producto</a></li>
+      <li><a href="#editar-producto">ver/borrar/Editar producto</a></li>
       <li><a href="#buscar-usuario">Buscar usuarios</a></li>
       <li><a href="#ver-usuarios">Editar/ver/eliminar usuario</a></li>
       <li><a href="#ver-usuarios">Ver usuarios</a></li>
@@ -62,7 +62,7 @@ require_once '../includes/funciones_admin.php'; ?>
     <textarea id="descripcion" name="descripcion"></textarea>
 
     <label for="precio">Precio:</label>
-    <input type="number" id="precio" name="precio" step="0.01" required>
+<input type="text" id="precio" name="precio" required pattern="^\d{1,8}(\.\d{2})?$" title="Por favor, ingrese un precio válido con hasta 8 dígitos enteros y 2 dígitos decimales">
 
     <label for="imagen">Imagen:</label>
     <input type="file" name="imagen">
@@ -85,6 +85,35 @@ require_once '../includes/funciones_admin.php'; ?>
 <button type="submit" name="agregar_producto">Agregar producto</button>
 
   </form>
+  
+</section>
+<section>
+    <h2>Buscar producto</h2>
+    <form action="buscar_producto.php" method="post">
+        <label for="nombre">Nombre del producto:</label>
+        <input type="text" id="nombre" name="nombre">
+
+        <label for="precioMin">Precio mínimo:</label>
+        <input type="number" id="precioMin" name="precioMin" step="0.01" min="0">
+
+        <label for="precioMax">Precio máximo:</label>
+        <input type="number" id="precioMax" name="precioMax" step="0.01" min="0">
+
+        <label for="categoria">Categoría:</label>
+        <select id="categoria" name="categoria">
+            <option value="">--Seleccionar--</option>
+            <!-- Aquí puedes añadir tus categorías -->
+            <option value="1">Celulares y Tablets</option>
+            <option value="2">Computadoras y Laptops</option>
+            <option value="3">Audio y Video</option>
+            <!-- ... -->
+        </select>
+
+        <button type="submit">Buscar</button>
+    </form>
+</section>
+<section>
+    <h2>Resultados de búsqueda</h2>
 </section>
 
     <section id="editar-producto">
@@ -153,6 +182,7 @@ require_once '../includes/funciones_admin.php'; ?>
       </tbody>
   </table>
 </section>
+
 
     <section id="ver-usuarios"> 
   <h2>Usuarios</h2>

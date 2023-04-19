@@ -113,13 +113,15 @@ function agregar_producto($nombre, $descripcion, $precio, $imagen, $categoria) {
     
   
     // Guardar la imagen en el servidor y obtener la ruta de la imagen
-    $ruta_imagen = '';
-    if ($imagen['error'] === UPLOAD_ERR_OK) {
-      $nombre_imagen = uniqid() . '_' . $imagen['name'];
-      $ruta_imagen = 'C:\xampp\htdocs\SEN_proyect_ventas\imagenes\productos' . $nombre_imagen;
-      move_uploaded_file($imagen['tmp_name'], $ruta_imagen);
-    }
-  
+// Guardar la imagen en el servidor y obtener la ruta de la imagen
+$ruta_imagen = '';
+if ($imagen['error'] === UPLOAD_ERR_OK) {
+  $nombre_imagen = uniqid() . '_' . $imagen['name'];
+  $ruta_imagen = 'imagenes/productos/produc' . $nombre_imagen;
+  $ruta_absoluta = 'C:\xampp\htdocs\SEN_proyect_ventas\\' . $ruta_imagen;
+  move_uploaded_file($imagen['tmp_name'], $ruta_absoluta);
+}
+
     // Insertar el producto en la base de datos
     $consulta = "INSERT INTO productos (nombre, descripcion, precio, imagen, categoria_id) VALUES ('$nombre', '$descripcion', '$precio', '$ruta_imagen', '$categoria')";
 
@@ -133,7 +135,46 @@ function agregar_producto($nombre, $descripcion, $precio, $imagen, $categoria) {
       return false;
     }
   }
-      
+    
+  
+  function buscarProducto($nombre, $precioMin, $precioMax, $categoria) {
+    include 'conexion.php';
+    global $conexion;
+
+    $nombre = mysqli_real_escape_string($conexion, $nombre);
+    $precioMin = mysqli_real_escape_string($conexion, $precioMin);
+    $precioMax = mysqli_real_escape_string($conexion, $precioMax);
+    $categoria = mysqli_real_escape_string($conexion, $categoria);
+
+    $consulta = "SELECT productos.id, productos.nombre, productos.descripcion, productos.precio, productos.imagen, categorias.nombre AS categoria_nombre FROM productos JOIN categorias ON productos.categoria_id = categorias.id WHERE productos.nombre LIKE '%$nombre%'";
+
+    if (!empty($precioMin)) {
+        $consulta .= " AND productos.precio >= $precioMin";
+    }
+
+    if (!empty($precioMax)) {
+        $consulta .= " AND productos.precio <= $precioMax";
+    }
+
+    if (!empty($categoria)) {
+        $consulta .= " AND productos.categoria_id = $categoria";
+    }
+
+    $consulta .= " ORDER BY productos.precio ASC";
+
+    $resultado = mysqli_query($conexion, $consulta);
+
+    if (!$resultado) {
+        die('Error en la consulta: ' . mysqli_error($conexion));
+    }
+
+    $productos = array();
+    while ($producto = mysqli_fetch_assoc($resultado)) {
+        $productos[] = $producto;
+    }
+
+    return $productos;
+}
   function obtener_productos() {
     include 'conexion.php';
 
@@ -149,6 +190,7 @@ function agregar_producto($nombre, $descripcion, $precio, $imagen, $categoria) {
 
     return $productos;
 }
+
 function loginadmin($email, $password) {
   global $conexion;
 
