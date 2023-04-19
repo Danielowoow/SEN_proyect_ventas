@@ -42,7 +42,7 @@ require_once '../includes/funciones_admin.php'; ?>
     <ul>
       <li><a href="#agregar-producto">Agregar producto</a></li>
       <li><a href="#buscar-producto">buscar producto</a></li>
-      <li><a href="#iver-productos">ver/borrar/Editar producto</a></li>
+      <li><a href="#ver-productos">ver/borrar/Editar producto</a></li>
       <li><a href="#buscar-usuario">Buscar usuarios</a></li>
       <li><a href="#ver-usuarios">Editar/ver/eliminar usuario</a></li>
       <li><a href="#ver-usuarios">Ver usuarios</a></li>
@@ -175,8 +175,41 @@ require_once '../includes/funciones_admin.php'; ?>
             event.preventDefault();
             cargarProductos();
         });
+
+        // Escucha el evento de clic en los botones "Eliminar"
+        $(document).on('click', '.eliminarProductoBtn', function(event) {
+            event.preventDefault();
+            var productoId = $(this).data('producto-id');
+            var confirmacion = confirm('¿Está seguro de que desea eliminar este producto?');
+            if (confirmacion) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'eliminar_producto.php',
+                    data: {
+                        'producto_id': productoId
+                    },
+                    dataType: 'json'
+                })
+                .done(function(data) {
+                    if (data.success) {
+                        cargarProductos();
+                    } else {
+                        alert('Error al eliminar el producto.');
+                    }
+                });
+            }
+        });
+
+        // Escucha el evento de clic en los botones "Editar"
+        $(document).on('click', '.editarProductoBtn', function(event) {
+            event.preventDefault();
+            var productoId = $(this).data('producto-id');
+            // Agregar código aquí para redirigir a la página de edición del producto
+            // por ejemplo:
+            window.location.href = 'editar_producto.php?id=' + productoId;
+        });
     </script>
-</section>
+</section>  
 
 <section id="editar-producto">
       <!-- Formulario para editar producto -->

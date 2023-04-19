@@ -238,3 +238,73 @@ function adminActualizarUsuario($id_usuario, $nombre, $apellido_paterno, $apelli
       return false;
   }
 }
+function obtenerProductoPorId($id_producto) {
+  include 'conexion.php';
+  global $conexion;
+
+  $consulta = "SELECT productos.id, productos.nombre, productos.descripcion, productos.precio, productos.imagen, categorias.id AS categoria_id, categorias.nombre AS categoria_nombre FROM productos JOIN categorias ON productos.categoria_id = categorias.id WHERE productos.id = $id_producto";
+
+  $resultado = mysqli_query($conexion, $consulta);
+
+  if (!$resultado) {
+      die('Error en la consulta: ' . mysqli_error($conexion));
+  }
+
+  $producto = mysqli_fetch_assoc($resultado);
+
+  return $producto;
+}
+function obtenerTodasCategorias() {
+  include 'conexion.php';
+  global $conexion;
+
+  $consulta = "SELECT * FROM categorias ORDER BY nombre ASC";
+
+  $resultado = mysqli_query($conexion, $consulta);
+
+  if (!$resultado) {
+      die('Error en la consulta: ' . mysqli_error($conexion));
+  }
+
+  $categorias = array();
+  while ($categoria = mysqli_fetch_assoc($resultado)) {
+      $categorias[] = $categoria;
+  }
+
+  return $categorias;
+}
+function subirImagenProducto($imagen) {
+  // Ruta donde se guardarán las imágenes
+  $ruta = "C:\xampp\htdocs\SEN_proyect_ventas\\";
+
+  // Obtener el nombre y extensión del archivo
+  $nombre_archivo = basename($imagen['name']);
+  $extension_archivo = pathinfo($nombre_archivo, PATHINFO_EXTENSION);
+
+  // Generar un nombre único para el archivo
+  $nombre_unico = uniqid() . "." . $extension_archivo;
+
+  // Comprobar que el archivo se haya subido correctamente
+  if (!move_uploaded_file($imagen['tmp_name'], $ruta . $nombre_unico)) {
+      die("No se pudo subir la imagen.");
+  }
+
+  return $ruta . $nombre_unico;
+}
+
+// Función para eliminar la imagen de un producto
+function eliminarImagenProducto($imagen_actual) {
+  if (!empty($imagen_actual)) {
+      unlink($imagen_actual);
+  }
+}
+
+// Función para actualizar un producto
+function actualizarProducto($id_producto, $nombre, $descripcion, $precio, $categoria_id) {
+  global $conexion;
+  $sql = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, categoria_id = ? WHERE id = ?";
+  $stmt = $conexion->prepare($sql);
+  $stmt->bind_param("ssdii", $nombre, $descripcion, $precio, $categoria_id, $id_producto);
+  return $stmt->execute();
+}
+

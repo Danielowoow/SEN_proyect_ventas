@@ -1,31 +1,20 @@
-<?php
-include 'includes/conexion.php';
-include 'includes/funciones.php';
+<?php 
+include "../includes/conexion.php";
 
-// Verificar si el usuario tiene permisos para acceder a esta página
-// verificar_permisos();
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
+    // Obtener el ID del producto a eliminar
+    $id = mysqli_real_escape_string($conexion, $_POST['id']);
 
-// Obtener el ID del producto a eliminar
-if (isset($_GET['id'])) {
-    $id_producto = $_GET['id'];
-} else {
-    header("Location: admin/ver_productos.php");
-    exit();
+    // Eliminar el producto de la base de datos
+    $consulta = "DELETE FROM productos WHERE id = '$id'";
+    $resultado = mysqli_query($conexion, $consulta);
+
+    if ($resultado) {
+        // Redirigir de regreso a la página de ver productos con un mensaje de éxito
+        header('Location: admin.php?mensaje=Producto eliminado correctamente');
+        exit;
+    } else {
+        // Si ocurre un error, mostrar un mensaje de error
+        echo 'Error al eliminar el producto';
+    }
 }
-
-// Eliminar el producto de la base de datos
-$sql = "DELETE FROM productos WHERE id = ?";
-$stmt = $conexion->prepare($sql);
-$stmt->bind_param("i", $id_producto);
-
-if ($stmt->execute()) {
-    // Producto eliminado correctamente
-    header("Location: admin/ver_productos.php?mensaje=producto_eliminado");
-} else {
-    // Error al eliminar el producto
-    header("Location: admin/ver_productos.php?mensaje=error_eliminar");
-}
-
-$stmt->close();
-$conexion->close();
-
