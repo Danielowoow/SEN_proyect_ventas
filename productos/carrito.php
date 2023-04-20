@@ -2,6 +2,7 @@
 session_start();
 include '../includes/conexion.php';
 
+
 // Verificar que el carrito de compras existe
 if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = array();

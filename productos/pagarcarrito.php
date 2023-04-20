@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include '../includes/conexion.php';
 
 // Verificar que el carrito de compras existe y no está vacío
