@@ -44,7 +44,7 @@ if (!is_array($usuario)) {
             <li><strong>Ciudad:</strong> <?php echo $usuario['ciudad']; ?></li>
             <li><strong>Contraseña:</strong> ********</li>
         </ul>
-        <a href="http://localhost/SEN_proyect_ventas/usuarios/actualizar.php">Editar perfil</a>
+        <a href="actualizar.php">Editar perfil</a>
         <a href="../salir.php">Cerrar sesión</a>
     </div>
     <?php include '../includes/footer.php'; ?>

@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   if (agregar_producto($nombre, $descripcion, $precio, $imagen, $categoria)) {
     // Si se agregó el producto correctamente, redirigir a la página de productos
-    header("Location: http://localhost/SEN_proyect_ventas/admin/admin.php");
+    header("Location: admin.php");
     exit();
   } else {
     // Si hubo un error al agregar el producto, mostrar un mensaje de error

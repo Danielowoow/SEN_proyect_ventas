@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (loginUsuario($email, $password)) {
         echo "entro exitosamente";
         echo "dale click";
-        echo '<li><a class="dropdown-item" tipe= "button" href="http://localhost/SEN_proyect_ventas/usuarios/perfil.php">pagina de inicio</a></li>';
+        echo '<li><a class="dropdown-item" tipe= "button" href="../usuarios/perfil.php">pagina de inicio</a></li>';
     } else {
         echo "Credenciales incorrectas";
-        echo '<li><a class="button" href="http://localhost/SEN_proyect_ventas/login.php">Intenar de nuevo</a></li>';
+        echo '<li><a class="button" href="../SEN_proyect_ventas/login.php">Intenar de nuevo</a></li>';
     }
 }
 ?>

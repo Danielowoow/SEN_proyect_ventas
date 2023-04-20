@@ -24,15 +24,15 @@
                         <i class="bi bi-person"></i>
                     </label>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="http://localhost/SEN_proyect_ventas/login.php">Iniciar sesión</a></li>
-                        <li><a class="dropdown-item" href="http://localhost/SEN_proyect_ventas/usuarios/perfil.php">Mi perfil</a></li>
+                        <li><a class="dropdown-item" href="../SEN_proyect_ventas/login.php">Iniciar sesión</a></li>
+                        <li><a class="dropdown-item" href="../SEN_proyect_ventas/usuarios/perfil.php">Mi perfil</a></li>
                         <li><a class="dropdown-item" href="usuarios/mis_pedidos.php">Mis pedidos</a></li>
-                        <li><a class="dropdown-item" href="http://localhost/SEN_proyect_ventas/admin/admin.php">ADMIN</a></li>
+                        <li><a class="dropdown-item" href=../SEN_proyect_ventas/admin/admin.php>ADMIN</a></li>
                         <li><a class="dropdown-item" href="../salir.php">CERRAR SESION</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="carrito/index.php">
+                    <a class="nav-link" href="productos/carrito.php">
                         <i class="bi bi-cart"></i>
                     </a>
                 </li>

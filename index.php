@@ -7,6 +7,11 @@
     <!-- <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css"> -->
     <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
 
 </head>
@@ -53,49 +58,56 @@
         <p>Esta sección se cerrará al hacer clic en el botón X en la parte superior derecha.</p>
         <button class="close-btn" onclick="closeSection()">x</button>
     </section>
+    <?php include 'includes/conexion.php'; ?>
+    <?php
+    $query = "SELECT * FROM categorias";
+    $result = mysqli_query($conexion, $query);
+
+    if (!$result) {
+        die("Error al consultar la base de datos: " . mysqli_error($conexion));
+    }
+?>
 
         <!-- Categorías de productos -->
         <section class="categorias my-5">
     <div class="container">
         <h2 class="text-center mb-4">Categorías de productos</h2>
-        <div class="row">
-            <!-- Repite el siguiente bloque por cada categoría -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="imagen_categoria.jpg" class="card-img-top" alt="Nombre de la categoría">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre de la categoría</h5>
-                        <p class="card-text">Descripción breve de la categoría.</p>
-                        <a href="#" class="btn btn-primary">Ver productos</a>
+        <div id="carouselCategorias" class="carousel slide" data-ride="carousel" data-interval="3000">
+            <div class="carousel-inner">
+                <?php $counter = 0; ?>
+                <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                    <?php if ($counter % 3 == 0): ?>
+                        <div class="carousel-item <?php if ($counter == 0) { echo 'active'; } ?>">
+                            <div class="row justify-content-center">
+                    <?php endif; ?>
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $row['nombre']; ?></h5>
+                                <p class="card-text"><?php echo $row['descripcion']; ?></p>
+                                <a href="productos/categoria.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Veraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa productos</a>
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre de la categoría</h5>
-                        <p class="card-text">Descripción breve de la categoría.</p>
-                        <a href="#" class="btn btn-primary">Ver productos</a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre de la categoría</h5>
-                        <p class="card-text">Descripción breve de la categoría.</p>
-                        <a href="#" class="btn btn-primary">Ver productos</a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre de la categoría</h5>
-                        <p class="card-text">Descripción breve de la categoría.</p>
-                        <a href="#" class="btn btn-primary">Ver productos</a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre de la categoría</h5>
-                        <p class="card-text">Descripción breve de la categoría.</p>
-                        <a href="#" class="btn btn-primary">Ver productos</a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre de la categoría</h5>
-                        <p class="card-text">Descripción breve de la categoría.</p>
-                        <a href="#" class="btn btn-primary">Ver productos</a>
-                    </div>
-                </div>
+
+                    <?php if ($counter % 3 == 2 || $counter + 1 == mysqli_num_rows($result)): ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php $counter++; ?>
+                <?php endwhile; ?>
             </div>
-            <!-- Fin del bloque -->
+            <a class="carousel-control-prev" href="#carouselCategorias" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselCategorias" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Siguiente</span>
+            </a>
         </div>
     </div>
 </section>

@@ -25,7 +25,7 @@ require_once '../includes/funciones_admin.php'; ?>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="js/bootstrap.js"></script>
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css"> 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <link rel="stylesheet" href="estilos.css">
   <script src="funciones.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -109,6 +109,14 @@ require_once '../includes/funciones_admin.php'; ?>
             <option value="1">Celulares y Tablets</option>
             <option value="2">Computadoras y Laptops</option>
             <option value="3">Audio y Video</option>
+            <option value="4">Accesorios</option>
+  <option value="5">Cámaras y Fotografía</option>
+  <option value="6">Gaming</option>
+  <option value="7">Redes y Conectividad</option>
+  <option value="8">Impresoras y Escáneres</option>
+  <option value="9">Almacenamiento</option>
+  <option value="10">Proyectores y Pantallas</option>
+
             <!-- ... -->
         </select>
 
@@ -358,6 +366,7 @@ require_once '../includes/funciones_admin.php'; ?>
 </div>
 </div>  </footer>
 <style>
+  
   /* Estilos básicos */
 body {
   background-color: #f1f1f1;
@@ -456,9 +465,22 @@ nav li {
 }
 
 nav a {
-  text-decoration: none; /* elimina el subrayado predeterminado */
+  display: inline-block; /* convierte los enlaces en elementos en línea con ancho */
+  padding: 10px 15px; /* agrega relleno a los botones */
+  border: 1px solid #000; /* agrega un borde sólido de 1px */
+  border-radius: 5px; /* agrega esquinas redondeadas a los botones */
+  background-color: #FFF; /* establece el color de fondo */
   color: #000; /* establece el color de texto */
   font-weight: bold; /* establece el peso de fuente en negrita */
+  text-decoration: none; /* elimina el subrayado predeterminado */
+  transition: background-color 0.3s ease; /* agrega una transición suave en el cambio de color de fondo */
+}
+
+nav a:hover,
+nav a:focus,
+nav a:active {
+  background-color: #000; /* cambia el color de fondo cuando se coloca el cursor o se hace clic */
+  color: #FFF; /* cambia el color de texto cuando se coloca el cursor o se hace clic */
 }
 
 </style>
