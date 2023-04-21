@@ -24,4 +24,19 @@ function obtenerTodasCategoriasProducto() {
   }
   
 
+  function obtenerProductos() {
+    global $conexion;
+
+    $query = "SELECT * FROM productos";
+    $resultado = mysqli_query($conexion, $query);
+
+    $productos = array();
+    while ($producto = mysqli_fetch_assoc($resultado)) {
+        $productos[] = $producto;
+    }
+
+    mysqli_free_result($resultado);
+
+    return $productos;
+}
 // ... otras funciones de productos

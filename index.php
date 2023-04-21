@@ -111,29 +111,44 @@
         </div>
     </div>
 </section>
+<?php include 'includes/funciones_producto.php';
+$productos = obtenerProductos(); ?>
 
-<section class="productos-destacados my-5">
+<section class="productos-alea my-5">
     <div class="container">
-        <h2 class="text-center mb-4">Productos destacados</h2>
-        <div class="row">
-            <!-- Repite el siguiente bloque por cada producto destacado -->
-            <div class="col-md-4">
+        <h2 class="text-center mb-4">Productos</h2>
+        <?php $i = 0; ?>
+        <?php foreach ($productos as $producto): ?>
+            <?php if ($i % 3 == 0): ?>
+                <div class="row">
+            <?php endif; ?>
+            <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="imagen_producto.jpg" class="card-img-top" alt="Nombre del producto">
+                    <img src="<?php echo $producto['imagen']; ?>" class="card-img-top" alt="<?php echo $producto['nombre']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Nombre del producto</h5>
-                        <p class="card-text">Descripción breve del producto.</p>
+                        <h5 class="card-title"><?php echo $producto['nombre']; ?></h5>
+                        <p class="card-text"><?php echo $producto['descripcion']; ?></p>
                         <div class="d-flex justify-content-between">
-                            <span class="price">$ Precio</span>
-                            <a href="#" class="btn btn-primary">Ver más</a>
+                            <span class="price">$<?php echo $producto['precio']; ?></span>
+                            <form action="productos/agregar_al_carrito.php" method="post">
+                                <input type="hidden" name="producto_id" value="<?php echo $producto['id']; ?>">
+                                <button type="submit" name="accion" value="comprar" class="btn btn-success">Comprar</button>
+                                <button type="submit" name="accion" value="agregar_al_carrito" class="btn btn-info">Añadir al carrito</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Fin del bloque -->
-        </div>
+            <?php $i++; ?>
+            <?php if ($i % 3 == 0): ?>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <?php if ($i % 3 != 0): ?>
+            </div>
+        <?php endif; ?>
     </div>
-</section>  
+</section>
     </main>
 jijija
 
