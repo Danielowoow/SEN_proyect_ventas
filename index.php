@@ -149,8 +149,11 @@ $productos = obtenerProductos(); ?>
         <?php endif; ?>
     </div>
 </section>
+<section>
+    
+</section>
     </main>
-jijija
+
 
     <?php include 'includes/footer.php'; ?>
     <a href="https://wa.me/51931998025  " target="_blank" class="whatsapp-link">

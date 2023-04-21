@@ -14,7 +14,8 @@
                     <a class="nav-link" href="blog/index.php">Blog</a>
                 </li>
             </ul>
-            <form class="d-flex me-4">
+            <form class="d-flex me-4" action="productos/resultados_busqueda.php" method="post">
+
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
