@@ -1,4 +1,3 @@
-
 CREATE DATABASE sen_proyect_ventas;
 USE sen_proyect_ventas;
 CREATE TABLE usuarios (
@@ -13,6 +12,8 @@ CREATE TABLE usuarios (
     direccion VARCHAR(255),
     ciudad VARCHAR(255)
 );
+drop table usuarios;
+select * from usuarios;
 drop table categorias;
 select * from categorias;
 CREATE TABLE categorias (
@@ -31,9 +32,7 @@ INSERT INTO categorias (nombre, descripcion) VALUES
 ('Impresoras y Escáneres', 'Categoría de impresoras y escáneres'),
 ('Almacenamiento', 'Categoría de dispositivos de almacenamiento'),
 ('Proyectores y Pantallas', 'Categoría de proyectores y pantallas');
-
-drop table usuarios;
-select * from usuarios;
+drop table productos;
 CREATE TABLE productos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -44,6 +43,7 @@ CREATE TABLE productos (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 );
+select * from productos;
 CREATE TABLE administradores (
     id INT AUTO_INCREMENT PRIMARY KEY,
     correo VARCHAR(255) NOT NULL UNIQUE,
@@ -64,4 +64,34 @@ INSERT INTO administradores (
     'Q', 'Q', '12005-04-30', 'Calle Ejemplo 123',
     'cusco'
 );
-select * from productos;
+CREATE TABLE transacciones (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    producto_id INT NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    tarjeta VARCHAR(16) NOT NULL,
+    vencimiento VARCHAR(7) NOT NULL,
+    cvv VARCHAR(4) NOT NULL,
+    fecha DATETIME NOT NULL,
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
+);
+select * from pedidos;
+CREATE TABLE pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    total DECIMAL(10, 2) NOT NULL,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+-- Crear tabla de detalles del pedido
+CREATE TABLE detalles_pedido (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT NOT NULL,
+    producto_id INT NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    cantidad INT NOT NULL,
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
+);
+select * from transacciones ;
